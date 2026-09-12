@@ -9,7 +9,7 @@ const tabs = ["BUY", "SELL", "RENT"] as const;
 export function PropertySearch() {
   const [active, setActive] = useState<(typeof tabs)[number]>("BUY");
   return (
-    <div className="w-full bg-white text-navy shadow-[0_24px_60px_rgba(1,20,37,0.2)]">
+    <div className="w-full bg-white text-navy shadow-[0_24px_60px_rgba(10,68,72,0.18)]">
       <div role="tablist" aria-label="Property action" className="flex border-b border-navy/10 px-4 sm:px-7">
         {tabs.map(tab => <button type="button" role="tab" aria-selected={active === tab} key={tab} onClick={() => setActive(tab)} className={`relative min-h-14 px-5 text-xs font-bold tracking-[0.18em] ${active === tab ? "text-navy after:absolute after:inset-x-4 after:bottom-0 after:h-0.5 after:bg-gold" : "text-slate hover:text-navy"}`}>{tab}</button>)}
       </div>

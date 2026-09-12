@@ -1,30 +1,52 @@
 @import "tailwindcss";
 
+:root {
+  --brand-primary: #137c79;
+  --brand-dark: #0e5f5d;
+  --brand-deep: #0a4448;
+  --brand-soft: #eaf6f5;
+  --bg-soft: #f8fbfb;
+  --white: #ffffff;
+  --text-primary: #163133;
+  --text-muted: #5e7274;
+  --border-soft: #dce9e8;
+}
+
 @theme inline {
-  --color-navy: #061d31;
-  --color-navy-light: #12354f;
-  --color-gold: #c7a55b;
-  --color-gold-light: #ddc27f;
-  --color-gold-dark: #8c6a2f;
-  --color-gold-pale: #f4ecd9;
-  --color-offwhite: #fbfaf6;
-  --color-sand: #f1eee6;
-  --color-slate: #5e6c78;
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-soft: var(--brand-soft);
+  --color-bg-soft: var(--bg-soft);
+  --color-text-primary: var(--text-primary);
+  --color-text-muted: var(--text-muted);
+  --color-border-soft: var(--border-soft);
+
+  /* Compatibility aliases keep the existing component structure intact. */
+  --color-navy: var(--brand-deep);
+  --color-navy-light: var(--brand-dark);
+  --color-gold: var(--brand-primary);
+  --color-gold-light: var(--brand-dark);
+  --color-gold-dark: var(--brand-dark);
+  --color-gold-pale: var(--brand-soft);
+  --color-offwhite: var(--bg-soft);
+  --color-sand: var(--brand-soft);
+  --color-slate: var(--text-muted);
   --font-display: Georgia, "Times New Roman", serif;
 }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; background: #fbfaf6; color: #061d31; font-family: Arial, Helvetica, sans-serif; text-rendering: optimizeLegibility; }
+body { margin: 0; background: var(--bg-soft); color: var(--text-primary); font-family: Arial, Helvetica, sans-serif; text-rendering: optimizeLegibility; }
 a { text-decoration: none; }
 button, input, select { font: inherit; }
 textarea { font: inherit; resize: vertical; }
 button, select { cursor: pointer; }
-::selection { background: #c7a55b; color: #061d31; }
-.prose-copy h2 { margin-top: 2.4rem; font-family: Georgia, "Times New Roman", serif; font-size: 2rem; line-height: 1.2; color: #061d31; }
-.prose-copy p { margin-top: 1rem; color: #5e6c78; font-size: 1rem; line-height: 1.9; }
+::selection { background: var(--brand-primary); color: var(--white); }
+.prose-copy h2 { margin-top: 2.4rem; font-family: Georgia, "Times New Roman", serif; font-size: 2rem; line-height: 1.2; color: var(--text-primary); }
+.prose-copy p { margin-top: 1rem; color: var(--text-muted); font-size: 1rem; line-height: 1.9; }
 .prose-copy ul { margin-top: 1rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .75rem; list-style: none; padding: 0; }
-.prose-copy li { border-bottom: 1px solid rgba(6,29,49,.1); padding: .65rem 0; color: #5e6c78; }
+.prose-copy li { border-bottom: 1px solid var(--border-soft); padding: .65rem 0; color: var(--text-muted); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
