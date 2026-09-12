@@ -1,0 +1,48 @@
+import type { Property } from "@/types/property";
+
+export const properties: Property[] = [
+  {
+    slug: "designer-home-f-7-islamabad",
+    title: "Designer Family Home in F-7",
+    location: "F-7, Islamabad",
+    city: "Islamabad",
+    price: "PKR 18.5 Crore",
+    propertyType: "House",
+    size: "1 Kanal",
+    image: "/images/property-house.webp",
+    featured: true,
+  },
+  {
+    slug: "park-facing-plot-bahria-rawalpindi",
+    title: "Park-Facing Residential Plot",
+    location: "Bahria Town, Rawalpindi",
+    city: "Rawalpindi",
+    price: "PKR 2.9 Crore",
+    propertyType: "Plot",
+    size: "1 Kanal",
+    image: "/images/hero-property.webp",
+    featured: true,
+  },
+  {
+    slug: "city-view-apartment-gulberg-lahore",
+    title: "City-View Serviced Apartment",
+    location: "Gulberg III, Lahore",
+    city: "Lahore",
+    price: "PKR 4.75 Crore",
+    propertyType: "Apartment",
+    size: "1,850 sq ft",
+    image: "/images/project-towers.webp",
+    featured: true,
+  },
+  {
+    slug: "corporate-office-clifton-karachi",
+    title: "Grade-A Corporate Office",
+    location: "Clifton, Karachi",
+    city: "Karachi",
+    price: "PKR 7.2 Crore",
+    propertyType: "Commercial",
+    size: "2,400 sq ft",
+    image: "/images/property-commercial.webp",
+    featured: true,
+  },
+];
