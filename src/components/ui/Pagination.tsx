@@ -1,0 +1,3 @@
+export function Pagination() {
+  return <nav aria-label="Pagination" className="mt-12 flex items-center justify-center gap-2"><button type="button" className="h-11 border border-navy/15 px-4 text-xs font-bold uppercase tracking-wider text-slate">Previous</button>{[1, 2, 3].map(page => <button key={page} type="button" aria-current={page === 1 ? "page" : undefined} className={`h-11 w-11 border text-sm font-bold ${page === 1 ? "border-navy bg-navy text-white" : "border-navy/15 text-navy hover:border-gold"}`}>{page}</button>)}<button type="button" className="h-11 border border-navy/15 px-4 text-xs font-bold uppercase tracking-wider text-navy">Next</button></nav>;
+}

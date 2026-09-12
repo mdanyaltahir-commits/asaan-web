@@ -20,5 +20,6 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body><Header />{children}<Footer /></body></html>;
+  const organization = { "@context": "https://schema.org", "@type": "Organization", name: "AASAAN", url: "https://aasaan.com.pk", slogan: "One Ecosystem. One Property Journey. Made Aasaan." };
+  return <html lang="en"><body><Header />{children}<Footer /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} /></body></html>;
 }

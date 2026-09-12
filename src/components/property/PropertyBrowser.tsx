@@ -1,0 +1,28 @@
+"use client";
+
+import { useMemo, useState } from "react";
+import type { Property } from "@/types/property";
+import { PropertyCard } from "./PropertyCard";
+import { Icon } from "@/components/ui/Icons";
+import { Pagination } from "@/components/ui/Pagination";
+
+function Filters({ city, setCity, type, setType, verified, setVerified }: { city: string; setCity: (value: string) => void; type: string; setType: (value: string) => void; verified: boolean; setVerified: (value: boolean) => void }) {
+  const selectClass = "mt-2 min-h-11 w-full border border-navy/15 bg-white px-3 text-sm outline-none focus:border-gold";
+  return <div className="space-y-5"><label className="block text-xs font-bold uppercase tracking-wider">City<select value={city} onChange={e => setCity(e.target.value)} className={selectClass}><option value="">All Cities</option>{["Islamabad", "Rawalpindi", "Lahore", "Karachi"].map(item => <option key={item}>{item}</option>)}</select></label><label className="block text-xs font-bold uppercase tracking-wider">Area<input type="search" placeholder="Enter area" className={selectClass} /></label><label className="block text-xs font-bold uppercase tracking-wider">Property Type<select value={type} onChange={e => setType(e.target.value)} className={selectClass}><option value="">All Types</option>{["House", "Apartment", "Plot", "Commercial"].map(item => <option key={item}>{item}</option>)}</select></label>{["Price Range", "Property Size", "Residential / Commercial", "Ready / Under Construction"].map(label => <label key={label} className="block text-xs font-bold uppercase tracking-wider">{label}<select className={selectClass}><option>Any</option></select></label>)}<label className="flex items-center gap-3 text-sm font-semibold"><input type="checkbox" className="h-4 w-4 accent-gold-dark" />Installment Available</label><label className="flex items-center gap-3 text-sm font-semibold"><input type="checkbox" checked={verified} onChange={e => setVerified(e.target.checked)} className="h-4 w-4 accent-gold-dark" />Verified only</label></div>;
+}
+
+export function PropertyBrowser({ items, initialCity = "", purpose = "For Sale" }: { items: Property[]; initialCity?: string; purpose?: Property["purpose"] }) {
+  const [city, setCity] = useState(initialCity);
+  const [type, setType] = useState("");
+  const [verified, setVerified] = useState(false);
+  const [drawer, setDrawer] = useState(false);
+  const [view, setView] = useState<"grid" | "list">("grid");
+  const filtered = useMemo(() => items.filter(item => item.purpose === purpose && (!city || item.city === city) && (!type || item.propertyType === type) && (!verified || item.verified)), [items, purpose, city, type, verified]);
+  return <div className="grid gap-10 lg:grid-cols-[260px_1fr]">
+    <aside className="hidden border-r border-navy/10 pr-7 lg:block"><div className="mb-7 flex items-center justify-between"><h2 className="font-display text-2xl">Filters</h2><button type="button" onClick={() => { setCity(initialCity); setType(""); setVerified(false); }} className="text-[10px] font-bold uppercase tracking-wider text-gold-dark">Reset</button></div><Filters city={city} setCity={setCity} type={type} setType={setType} verified={verified} setVerified={setVerified} /></aside>
+    <div><div className="mb-7 flex flex-wrap items-center justify-between gap-4 border-b border-navy/10 pb-5"><div><p className="font-display text-2xl">{filtered.length} properties</p><p className="mt-1 text-xs text-slate">Sample inventory, ready for live data integration</p></div><div className="flex items-center gap-2"><button type="button" onClick={() => setDrawer(true)} className="flex h-11 items-center gap-2 border border-navy/15 px-4 text-xs font-bold uppercase lg:hidden"><Icon name="filter" />Filters</button><label className="sr-only" htmlFor="sort-property">Sort properties</label><select id="sort-property" className="h-11 border border-navy/15 bg-white px-3 text-xs font-semibold"><option>Featured first</option><option>Price: low to high</option><option>Newest</option></select><button type="button" aria-label="Grid view" onClick={() => setView("grid")} className={`hidden h-11 w-11 place-items-center border sm:grid ${view === "grid" ? "bg-navy text-white" : "border-navy/15"}`}><Icon name="grid" /></button><button type="button" aria-label="List view" onClick={() => setView("list")} className={`hidden h-11 w-11 place-items-center border sm:grid ${view === "list" ? "bg-navy text-white" : "border-navy/15"}`}><Icon name="list" /></button></div></div>
+      {filtered.length ? <div className={`grid gap-6 ${view === "grid" ? "sm:grid-cols-2 xl:grid-cols-3" : "grid-cols-1"}`}>{filtered.map(item => <PropertyCard key={item.slug} property={item} />)}</div> : <div className="border border-navy/10 bg-sand p-12 text-center"><h3 className="font-display text-3xl">No matching properties yet</h3><p className="mt-3 text-sm text-slate">Try clearing a filter or speak with an AASAAN expert.</p></div>}<Pagination />
+    </div>
+    {drawer && <div className="fixed inset-0 z-[70] bg-navy/55 lg:hidden"><div className="absolute inset-y-0 right-0 w-[min(90vw,380px)] overflow-y-auto bg-offwhite p-6"><div className="mb-7 flex items-center justify-between"><h2 className="font-display text-3xl">Filters</h2><button type="button" aria-label="Close filters" onClick={() => setDrawer(false)}><Icon name="close" className="h-6 w-6" /></button></div><Filters city={city} setCity={setCity} type={type} setType={setType} verified={verified} setVerified={setVerified} /><button type="button" onClick={() => setDrawer(false)} className="mt-8 min-h-12 w-full bg-gold text-xs font-bold uppercase tracking-wider">Show results</button></div></div>}
+  </div>;
+}

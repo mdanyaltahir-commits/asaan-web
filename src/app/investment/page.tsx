@@ -1,0 +1,11 @@
+import type { Metadata } from "next";
+import { PageHero } from "@/components/ui/PageHero";
+import { Container } from "@/components/layout/Container";
+import { VideoCard } from "@/components/investment/VideoCard";
+import { videos } from "@/data/videos";
+import { Badge } from "@/components/ui/Badge";
+import { Button } from "@/components/ui/Button";
+import { SubscribeForm } from "@/components/forms/SubscribeForm";
+
+export const metadata: Metadata = { title: "AASAAN Investment Group — Coming Soon", description: "Understand the property market through responsible education, analysis and expert conversations.", alternates: { canonical: "/investment" } };
+export default function InvestmentPage() { const featured = videos.find(video => video.featured) ?? videos[0]; return <main><PageHero eyebrow="Coming Soon" title="AASAAN Investment Group" description="Understand the Market Before You Enter It." image="/images/project-towers.webp" /><section className="bg-white py-18 sm:py-24"><Container><div className="mb-8"><Badge>Coming Soon</Badge><h2 className="mt-4 font-display text-4xl">Featured Video</h2></div><VideoCard video={featured} large /></Container></section><section className="bg-offwhite py-18 sm:py-24"><Container><div className="flex items-end justify-between gap-6"><div><p className="text-xs font-bold uppercase tracking-[.2em] text-gold-dark">Property Intelligence</p><h2 className="mt-4 font-display text-4xl">Latest Videos</h2></div><Button href="/videos" variant="outline">View Video Library</Button></div><div className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">{videos.slice(1, 7).map(video => <VideoCard key={video.slug} video={video} />)}</div></Container></section><section className="bg-navy py-18 text-white sm:py-24"><Container className="grid gap-10 lg:grid-cols-2"><div><h2 className="font-display text-4xl">Subscribe for Updates</h2><p className="mt-4 max-w-xl text-sm leading-7 text-white/65">Be notified when new market briefings, location analysis and AASAAN Talks are published.</p></div><div className="max-w-xl self-center"><SubscribeForm dark /></div><p className="text-xs leading-5 text-white/45 lg:col-span-2">Educational content only. AASAAN does not guarantee returns, sell financial products, pool investment funds or claim to provide escrow or payment services.</p></Container></section></main>; }

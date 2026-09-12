@@ -1,0 +1,8 @@
+import type { City } from "@/types/city";
+
+export const cities: City[] = [
+  { slug: "islamabad", name: "Islamabad", intro: "Explore homes, plots, apartments and commercial property across Pakistan's planned capital, from established sectors to growing residential corridors.", areas: ["F-7", "F-8", "E-11", "DHA Islamabad", "Bahria Enclave", "Gulberg Greens"], popularTypes: ["Houses", "Apartments", "Residential Plots", "Farmhouses"], image: "/images/property-house.webp" },
+  { slug: "rawalpindi", name: "Rawalpindi", intro: "Compare property across established neighbourhoods, planned communities and the expanding Islamabad–Rawalpindi metropolitan area.", areas: ["Bahria Town", "DHA", "Askari", "Chaklala", "Satellite Town", "Gulraiz"], popularTypes: ["Houses", "Residential Plots", "Commercial Plots", "Shops"], image: "/images/hero-property.webp" },
+  { slug: "lahore", name: "Lahore", intro: "Discover residential and commercial opportunities across Lahore's established districts and modern planned communities.", areas: ["DHA", "Gulberg", "Bahria Town", "Model Town", "Johar Town", "Cantt"], popularTypes: ["Houses", "Apartments", "Residential Plots", "Offices"], image: "/images/project-towers.webp" },
+  { slug: "karachi", name: "Karachi", intro: "Search Pakistan's largest property market across coastal neighbourhoods, central business districts and growing residential communities.", areas: ["Clifton", "DHA", "Gulshan-e-Iqbal", "Scheme 33", "PECHS", "Shahrah-e-Faisal"], popularTypes: ["Apartments", "Houses", "Offices", "Commercial Plots"], image: "/images/property-commercial.webp" },
+];

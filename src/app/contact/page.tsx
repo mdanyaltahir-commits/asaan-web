@@ -1,0 +1,8 @@
+import type { Metadata } from "next";
+import { PageHero } from "@/components/ui/PageHero";
+import { Container } from "@/components/layout/Container";
+import { DemoForm } from "@/components/forms/DemoForm";
+import { Icon } from "@/components/ui/Icons";
+
+export const metadata: Metadata = { title: "Contact AASAAN", description: "Contact AASAAN for property, project, service or general assistance.", alternates: { canonical: "/contact" } };
+export default function ContactPage() { return <main><PageHero eyebrow="Expert Assistance" title="Let's Make It Aasaan." description="Tell us what you need and we will help clarify the right next step." /><section className="bg-offwhite py-18 sm:py-24"><Container className="grid gap-12 lg:grid-cols-[.75fr_1.25fr]"><div><h2 className="font-display text-4xl">How can we help?</h2><div className="mt-8 grid gap-4">{[["mail", "General Inquiry"], ["home", "Property Assistance"], ["building", "Project Inquiry"], ["check", "Service Inquiry"]].map(([icon, label]) => <div key={label} className="flex items-center gap-4 border-b border-navy/10 pb-4"><span className="grid h-10 w-10 place-items-center bg-sand text-gold-dark"><Icon name={icon} /></span><span className="text-sm font-bold">{label}</span></div>)}</div><p className="mt-8 border-l-2 border-gold pl-5 text-sm leading-6 text-slate">Official phone, office and social contact details will be published once confirmed. We do not invent contact information.</p></div><div className="border-t-2 border-gold bg-white p-7 sm:p-10"><DemoForm kind="inquiry" submitLabel="Send Message" /></div></Container></section></main>; }
